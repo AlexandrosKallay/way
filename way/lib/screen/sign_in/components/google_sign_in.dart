@@ -1,5 +1,3 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:way/components/firebase_auth.dart';
 import 'package:way/components/social_icons.dart';
@@ -21,34 +19,34 @@ class _GoogleSignInState extends State<GoogleSignIn> {
   }
 
   void click() {
-    // signInWithGoogle().then((result) {
-    //   if (result != null) {
-    //     Navigator.of(context).push(
-    //       MaterialPageRoute(
-    //         builder: (context) {
-    //           return HomeScreen();
-    //         },
-    //       ),
-    //     );
-    //   }
-    // });
+    signInWithGoogle().then((result) {
+      if (result != null) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return HomeScreen();
+            },
+          ),
+        );
+      }
+    });
   }
   @override
   Widget build(BuildContext context) {
     return SocialIcon(
       iconSrc: 'assets/icons/google-plus.svg',
       press: (){
-      //   signInWithGoogle().then((result) {
-      //   if (result != null) {
-      //     Navigator.of(context).push(
-      //       MaterialPageRoute(
-      //         builder: (context) {
-      //           return HomeScreen();
-      //         },
-      //       ),
-      //     );
-      //   }
-      // });
+        signInWithGoogle().then((result) {
+        if (result != null) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return HomeScreen();
+              },
+            ),
+          );
+        }
+      });
       },
     );
   }

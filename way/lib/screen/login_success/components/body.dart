@@ -7,9 +7,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-
       children: [
-
         SizedBox(height: SizeConfig.screenHeight * 0.1,),
         Center(
           child: Image.asset("assets/images/tick.png",

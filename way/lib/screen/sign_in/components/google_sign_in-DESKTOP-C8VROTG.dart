@@ -18,35 +18,35 @@ class _GoogleSignInState extends State<GoogleSignIn> {
     //signOutGoogle();
   }
 
-  // void click() {
-  //   signInWithGoogle().then((result) {
-  //     if (result != null) {
-  //       Navigator.of(context).push(
-  //         MaterialPageRoute(
-  //           builder: (context) {
-  //             return HomeScreen();
-  //           },
-  //         ),
-  //       );
-  //     }
-  //   });
-  // }
+  void click() {
+    signInWithGoogle().then((result) {
+      if (result != null) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return HomeScreen();
+            },
+          ),
+        );
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SocialIcon(
       iconSrc: 'assets/icons/google-plus.svg',
       press: (){
-      //   signInWithGoogle().then((result) {
-      //   if (result != null) {
-      //     Navigator.of(context).push(
-      //       MaterialPageRoute(
-      //         builder: (context) {
-      //           return HomeScreen();
-      //         },
-      //       ),
-      //     );
-      //   }
-      // });
+        signInWithGoogle().then((result) {
+        if (result != null) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return HomeScreen();
+              },
+            ),
+          );
+        }
+      });
       },
     );
   }
