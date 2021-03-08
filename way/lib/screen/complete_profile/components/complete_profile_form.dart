@@ -7,11 +7,49 @@ import 'package:way/screen/otp/otp_screen.dart';
 import 'package:way/size_config.dart';
 
 class CompleteProfileForm extends StatefulWidget {
+  final String emailHolder;
+  final String passwordHolder;
+  final String passwordConfirmHolder;
+
+  CompleteProfileForm({
+    Key key,
+    @required
+    this.emailHolder,
+    this.passwordHolder,
+    this.passwordConfirmHolder}) : super(key: key);
+
   @override
-  _CompleteProfileFormState createState() => _CompleteProfileFormState();
+  _CompleteProfileFormState createState() => _CompleteProfileFormState(emailHolder,passwordHolder,passwordConfirmHolder);
 }
 
 class _CompleteProfileFormState extends State<CompleteProfileForm> {
+
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  final addressController = TextEditingController();
+
+  getItemAndNavigate(BuildContext context){
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => OtpScreen(
+              firstNameHolder : firstNameController.text,
+              lastNameHolder : lastNameController.text,
+              phoneNumberHolder : phoneNumberController.text,
+              addressHolder : addressController.text,
+            )
+        )
+    );
+  }
+
+  final emailHolder;
+  final passwordHolder;
+  final passwordConfirmHolder;
+
+  _CompleteProfileFormState(this.emailHolder,this.passwordHolder,this.passwordConfirmHolder);
+
+
 
   final _formkey = GlobalKey<FormState>();
   final List<String> errors = [];
@@ -56,7 +94,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
             press: (){
               if(_formkey.currentState.validate()){
                 //Go to OTP screen
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => OtpScreen()));
+                getItemAndNavigate(context);
               }
             },
           )
@@ -67,6 +105,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
+      controller: addressController,
       onSaved: (newValue) => address=newValue,
       onChanged: (value){
         if(value.isNotEmpty){
@@ -93,6 +132,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildPhoneNumberFormField() {
     return TextFormField(
+      controller: phoneNumberController,
       keyboardType: TextInputType.number,
       onSaved: (newValue) => phoneNumber=newValue,
       onChanged: (value){
@@ -120,6 +160,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildLastNameFormField() {
     return TextFormField(
+      controller: lastNameController,
       onSaved: (newValue) => lastName=newValue,
       decoration: InputDecoration(
         labelText: 'Last Name',
@@ -134,6 +175,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildFirstNameFormField() {
     return TextFormField(
+      controller: firstNameController,
       onSaved: (newValue) => firstName=newValue,
       onChanged: (value){
         if(value.isNotEmpty){

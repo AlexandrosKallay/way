@@ -6,6 +6,19 @@ import 'package:way/size_config.dart';
 import 'otp_form.dart';
 
 class Body extends StatelessWidget {
+  final firstNameHolder;
+  final lastNameHolder;
+  final phoneNumberHolder;
+  final addressHolder;
+
+  Body({
+    Key key,
+    @required
+    this.firstNameHolder,
+    this.lastNameHolder,
+    this.phoneNumberHolder,
+    this.addressHolder,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -17,10 +30,14 @@ class Body extends StatelessWidget {
             children: [
               SizedBox(height: SizeConfig.screenHeight * 0.05),
               Text("OTP Verification", style: headingStyle,),
-              Text("We send your code to +30 698 447 **** "),
+              Text("We send your code to +30 $phoneNumberHolder"),
               buildTimer(),
               SizedBox(height: SizeConfig.screenHeight * 0.15),
-              OtpForm(),
+              OtpForm(firstNameHolder : firstNameHolder,
+                lastNameHolder : lastNameHolder,
+                phoneNumberHolder : phoneNumberHolder,
+                addressHolder : addressHolder,
+              ),
               SizedBox(height: SizeConfig.screenHeight * 0.1),
               GestureDetector(
                 onTap: (){
