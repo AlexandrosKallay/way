@@ -7,6 +7,9 @@ class OtpScreen extends StatelessWidget {
   final lastNameHolder;
   final phoneNumberHolder;
   final addressHolder;
+  final emailHolder;
+  final passwordHolder;
+  final passwordConfirmHolder;
 
   OtpScreen({
     Key key,
@@ -15,6 +18,9 @@ class OtpScreen extends StatelessWidget {
     this.lastNameHolder,
     this.phoneNumberHolder,
     this.addressHolder,
+    this.emailHolder,
+    this.passwordHolder,
+    this.passwordConfirmHolder,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,10 @@ class OtpScreen extends StatelessWidget {
           firstNameHolder: firstNameHolder,
           lastNameHolder: lastNameHolder,
           phoneNumberHolder: phoneNumberHolder,
-          addressHolder: addressHolder
+          addressHolder: addressHolder,
+          emailHolder:emailHolder,
+          passwordHolder:passwordHolder,
+          passwordConfirmHolder:passwordConfirmHolder
       ),
     );
   }
