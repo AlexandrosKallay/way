@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:way/screen/sign_in/sign_in_screen.dart';
 
-import 'firebase_auth.dart';
 
 
 showAlertDialog(BuildContext context)  {
 
     // set up the buttons
+    // ignore: deprecated_member_use
     Widget cancelButton = FlatButton(
       child: Text("Cancel"),
       onPressed:  () {},
     );
+    // ignore: deprecated_member_use
     Widget continueButton = FlatButton(
       child: Text("Yes"),
       onPressed:  () {

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:way/models/destination_model.dart';
 import 'package:way/screen/complete_profile/complete_profile_screen.dart';
-import 'package:way/screen/destination/destination_screen.dart';
 import 'package:way/screen/forgot_password/forgot_password_screen.dart';
 import 'package:way/screen/home/home_screen.dart';
 import 'package:way/screen/login_success/login_success_screen.dart';
