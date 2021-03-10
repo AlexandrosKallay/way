@@ -1,6 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:way/components/custom_surffix_icon.dart';
 import 'package:way/components/default_button.dart';
 import 'package:way/components/form_error.dart';
@@ -11,7 +9,6 @@ import 'package:way/screen/login_success/login_success_screen.dart';
 
 
 import 'package:way/size_config.dart';
-import 'package:way/state/currentUser.dart';
 
 
 
@@ -22,28 +19,6 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-
-  void _loginUser(String email, String password, BuildContext context) async{
-    CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
-
-    try{
-      if(await _currentUser.loginUser(email, password)){
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => LoginSuccessScreen())
-        );
-      }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      }
-    }
-
-  }
-
   final _formKey =GlobalKey<FormState>();
   final List<String> errors=[];
   String email;
@@ -102,7 +77,7 @@ class _SignFormState extends State<SignForm> {
               press: (){
                 if (_formKey.currentState.validate()){
                   _formKey.currentState.save();
-                  _loginUser(_emailController.text, _passwordController.text, context);
+                  Navigator.pushNamed(context, LoginSuccessScreen.routeName);
                 }
               },
             ),
@@ -113,7 +88,6 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-      controller: _passwordController,
       obscureText: true,
       onSaved: (newValue) => password = newValue,
       onChanged: (value){
@@ -147,7 +121,6 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
-      controller: _emailController,
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email=newValue,
       onChanged: (value){
@@ -177,6 +150,4 @@ class _SignFormState extends State<SignForm> {
       ),
     );
   }
-
-
 }

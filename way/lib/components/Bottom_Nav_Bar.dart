@@ -27,19 +27,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
       },
       items: [
         BottomNavigationBarItem(
-          title: Text('Home'), // ignore: deprecated_member_use
+          title: Text('Home'),
           icon: Icon(Icons.home),
         ),
         BottomNavigationBarItem(
-          title: Text('Music'),// ignore: deprecated_member_use
+          title: Text('Music'),
           icon: Icon(Icons.music_note),
         ),
         BottomNavigationBarItem(
-          title: Text('Places'),// ignore: deprecated_member_use
+          title: Text('Places'),
           icon: Icon(Icons.location_on),
         ),
         BottomNavigationBarItem(
-          title: Text('Profile'),// ignore: deprecated_member_use
+          title: Text('Profile'),
           icon: Icon(Icons.person),
         ),
       ],

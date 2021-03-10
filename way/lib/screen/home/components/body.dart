@@ -1,4 +1,4 @@
-
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,6 +6,8 @@ import 'package:way/size_config.dart';
 import 'package:way/widgets/destination_carousel.dart';
 import 'package:way/widgets/hotel_carousel.dart';
 import '../../../constants.dart';
+import 'discount_banner.dart';
+import 'home_header.dart';
 
 class Body extends StatefulWidget {
   @override

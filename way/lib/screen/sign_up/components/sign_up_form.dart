@@ -4,7 +4,6 @@ import 'package:way/components/default_button.dart';
 import 'package:way/components/form_error.dart';
 import 'package:way/constants.dart';
 import 'package:way/screen/complete_profile/complete_profile_screen.dart';
-import 'package:way/screen/complete_profile/components/complete_profile_form.dart';
 
 import 'package:way/size_config.dart';
 
@@ -14,25 +13,6 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-
-  getItemAndNavigate(BuildContext context){
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => CompleteProfileScreen(
-                emailHolder : emailController.text,
-                passwordHolder : passwordController.text,
-                passwordConfirmHolder : confirmPasswordController.text,
-            )
-
-        )
-    );
-  }
-
   final _formkey = GlobalKey<FormState>();
   String email;
   String password;
@@ -73,7 +53,7 @@ class _SignUpFormState extends State<SignUpForm> {
             press: (){
               if (_formkey.currentState.validate()){
                 //go to home page
-                getItemAndNavigate(context);
+                Navigator.pushNamed(context, CompleteProfileScreen.routeName);
               }
             },
           )
@@ -84,7 +64,6 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildConfPasswordFormField() {
     return TextFormField(
-      controller: confirmPasswordController,
       obscureText: true,
       onSaved: (newValue) => conform_password = newValue,
       onChanged: (value){
@@ -116,7 +95,6 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-      controller: passwordController,
       obscureText: true,
       onSaved: (newValue) => password = newValue,
       onChanged: (value){
@@ -151,7 +129,6 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
-      controller: emailController,
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email=newValue,
       onChanged: (value){
