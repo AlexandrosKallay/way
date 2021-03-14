@@ -8,6 +8,9 @@ import 'package:way/screen/sign_in/sign_in_screen.dart';
 import 'package:way/screen/sign_up/sign_up_screen.dart';
 import 'package:way/screen/splash/splash_screen.dart';
 
+import 'screen/home/components/home.dart';
+import 'screen/profile/profile_screen.dart';
+
 
 
 
@@ -23,6 +26,8 @@ final Map <String,WidgetBuilder> routes  = {
   CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),
   OtpScreen.routeName:(context) => OtpScreen(),
   HomeScreen.routeName:(context) => HomeScreen(),
+  HomePage.routeName:(context) => HomePage(),
+  ProfileBody.routeName:(context) => ProfileBody(),
   //DestinationScreen.routeName:(context) => DestinationScreen(),
 
 };

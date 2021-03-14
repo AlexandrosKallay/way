@@ -8,7 +8,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int _currentIndex = 0;
 
-  List<String> titleList = ["Favorite", "Music", "Places"];
+  List<String> titleList = ["", "", ""];
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -27,19 +27,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
       },
       items: [
         BottomNavigationBarItem(
-          title: Text('Home'), // ignore: deprecated_member_use
+          title: Text(''), // ignore: deprecated_member_use
           icon: Icon(Icons.home),
         ),
         BottomNavigationBarItem(
-          title: Text('Music'),// ignore: deprecated_member_use
+          title: Text(''),// ignore: deprecated_member_use
           icon: Icon(Icons.music_note),
         ),
         BottomNavigationBarItem(
-          title: Text('Places'),// ignore: deprecated_member_use
+          title: Text(''),// ignore: deprecated_member_use
           icon: Icon(Icons.location_on),
         ),
         BottomNavigationBarItem(
-          title: Text('Profile'),// ignore: deprecated_member_use
+          title: Text(''),// ignore: deprecated_member_use
           icon: Icon(Icons.person),
         ),
       ],

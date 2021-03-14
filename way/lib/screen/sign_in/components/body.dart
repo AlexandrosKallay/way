@@ -28,7 +28,7 @@ class Body extends StatelessWidget {
                   Text(
                     'Welcome Back',
                     style: TextStyle(
-                        color: Colors.black,
+                        //color: Colors.black,
                         fontSize: getProportionateScreenWidth(18),
                         fontWeight: FontWeight.bold,
                     ),

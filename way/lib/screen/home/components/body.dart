@@ -98,19 +98,7 @@ class _BodyState extends State<Body> {
                 child: Container(
                   width: getProportionateScreenWidth(135),
                   height: getProportionateScreenWidth(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(22),
-                    //border: Border.all(color: Colors.black),
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(3, 3),
-                        blurRadius: 10,
-                        color: Colors.black.withOpacity(0.16),
-                        spreadRadius: -2,
-                      ),
-                    ],
-                  ),
+                  decoration: mySearchBarBoxDecoration (context),
                     child: TextField(
 
                       onChanged: (value) {},
@@ -118,7 +106,7 @@ class _BodyState extends State<Body> {
                         hintText: "Search your destination…",
                         hintStyle: TextStyle(
                           fontSize: getProportionateScreenWidth(8),
-                          color: Color(0xFF000000),
+                          //color: Color(0xFF000000),
                         ),
                         suffixIcon: Icon(Icons.search),
                         contentPadding: EdgeInsets.symmetric(
