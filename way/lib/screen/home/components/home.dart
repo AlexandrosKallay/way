@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:way/screen/home/components/body.dart';
+import 'package:way/screen/profile/profile_screen.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -9,6 +10,8 @@ import 'home_header.dart';
 
 
 class HomePage extends StatefulWidget {
+  static String routeName = "/home";
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -32,11 +35,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.green,
         );
       case 3:
-        return new Container(
-          width: 50,
-          height: 90,
-          color: Colors.yellow,
-        );
+        return new ProfileBody();
 
       default:
         return new Text("Error");
@@ -49,7 +48,7 @@ class _HomePageState extends State<HomePage> {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
-    return Scaffold(
+    return new Scaffold(
 
       extendBodyBehindAppBar: true,
       // appBar: AppBar(
@@ -71,19 +70,19 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            title: Text('Home'),
+            title: Text(''),
             icon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
-            title: Text('Favorite'),
+            title: Text(''),
             icon: Icon(Icons.favorite),
           ),
           BottomNavigationBarItem(
-            title: Text('Places'),
+            title: Text(''),
             icon: Icon(Icons.location_on),
           ),
           BottomNavigationBarItem(
-            title: Text('Profile'),
+            title: Text(''),
             icon: CircleAvatar(
               radius: 13.0,
               backgroundImage: AssetImage('assets/images/profile.jpg'),

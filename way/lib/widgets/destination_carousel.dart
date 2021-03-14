@@ -26,7 +26,7 @@ class DestinationCarousel extends StatelessWidget {
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.5,
-                    color: Colors.black,
+                    //color: Colors.black,
                   ),
                 ),
                 GestureDetector(
@@ -70,10 +70,7 @@ class DestinationCarousel extends StatelessWidget {
                           child: Container(
                             height: getProportionateScreenWidth(60),
                             width: getProportionateScreenWidth(85),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10.0)
-                            ),
+                            decoration: myDestinationBoxDecoration(context),
                             child: Padding(
                               padding: EdgeInsets.all(getProportionateScreenWidth(3)),
                               child: Column(
@@ -82,7 +79,7 @@ class DestinationCarousel extends StatelessWidget {
                                 children: <Widget>[
                                   Text("${destination.activities.length} activities",
                                     style: TextStyle(
-                                        color: Colors.black ,
+                                        //color: Colors.black ,
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.w600,
                                         letterSpacing: 1.2,
@@ -92,7 +89,6 @@ class DestinationCarousel extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 9,
                                       color: Colors.grey,
-
                                     ),
                                   )
                                 ],
@@ -101,17 +97,7 @@ class DestinationCarousel extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20.0),
-                            boxShadow: [
-                            BoxShadow(
-                              color: Colors.black26,
-                              offset: Offset(0.0, 2.0),
-                              blurRadius: 6.0,
-                              ),
-                            ],
-                          ),
+                          decoration: myDestinationBoxDecoration(context),
                           child: Stack(
                             children: <Widget>[
                             Hero(

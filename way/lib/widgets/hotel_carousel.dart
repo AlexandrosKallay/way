@@ -19,7 +19,7 @@ class HotelCarousel extends StatelessWidget {
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.5,
-                    color: Colors.black,
+                    //color: Colors.black,
                   ),
                 ),
                 GestureDetector(
@@ -46,7 +46,7 @@ class HotelCarousel extends StatelessWidget {
                Hotel hotel = hotels[index];
                 return Container(
                   margin: EdgeInsets.all(getProportionateScreenWidth(5.0)),
-                  width: getProportionateScreenWidth(95),
+                  width: getProportionateScreenWidth(100),
                   child: Stack(
                     alignment: Alignment.topCenter,
                     children: <Widget> [
@@ -54,11 +54,8 @@ class HotelCarousel extends StatelessWidget {
                         bottom: getProportionateScreenWidth(6),
                         child: Container(
                           height: getProportionateScreenWidth(50),
-                          width: getProportionateScreenWidth(105),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10.0)
-                          ),
+                          width: getProportionateScreenWidth(100),
+                          decoration: myHotelBoxDecoration(context),
                           child: Padding(
                             padding: EdgeInsets.all(getProportionateScreenWidth(3)),
                             child: Column(
@@ -66,7 +63,7 @@ class HotelCarousel extends StatelessWidget {
                               children: <Widget>[
                                 Text(hotel.name,
                                   style: TextStyle(
-                                    color: Colors.black ,
+                                    //color: Colors.black ,
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1.2,
@@ -83,7 +80,7 @@ class HotelCarousel extends StatelessWidget {
                                 Text('\$${hotel.price} / Night',
                                   style: TextStyle(
                                       fontSize: 12,
-                                      color: Colors.black,
+                                      //color: Colors.black,
                                       fontWeight: FontWeight.w600
                                   ),
                                 ),
@@ -93,17 +90,7 @@ class HotelCarousel extends StatelessWidget {
                         ),
                       ),
                       Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black26,
-                                offset: Offset(0.0, 2.0),
-                                blurRadius: 6.0,
-                              ),
-                            ],
-                          ),
+                          decoration: myHotelBoxDecoration(context),
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(20.0),
                               child: Image(

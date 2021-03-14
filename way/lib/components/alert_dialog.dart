@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:way/screen/sign_in/sign_in_screen.dart';
 
+import 'firebase_auth.dart';
+
 
 
 showAlertDialog(BuildContext context)  {
@@ -9,24 +11,25 @@ showAlertDialog(BuildContext context)  {
     // ignore: deprecated_member_use
     Widget cancelButton = FlatButton(
       child: Text("Cancel"),
-      onPressed:  () {},
+      onPressed:  () => Navigator.of(context, rootNavigator: true).pop(),
     );
     // ignore: deprecated_member_use
     Widget continueButton = FlatButton(
       child: Text("Yes"),
       onPressed:  () {
-        //signOutGoogle();
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) {
-              return SignInScreen();}),
-            ModalRoute.withName('/'));
+        signOutGoogle();
+        Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(MaterialPageRoute(
+            builder: (context) {
+              return SignInScreen();
+            }
+        ), ModalRoute.withName('/home'));
       },
     );
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("AlertDialog"),
-      content: Text("Would you like Log out from your account?"),
+      title: Text("Sign out"),
+      content: Text("Would you like Sign out from your account?"),
       actions: [
         cancelButton,
         continueButton,

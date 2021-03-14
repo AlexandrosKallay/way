@@ -33,6 +33,14 @@ dependencies:
   pinput: ^1.1.0
   flutter_svg: ^0.19.3
   provider: ^5.0.0
+  line_awesome_flutter: ^1.0.1
+  flutter_screenutil: ^1.0.2
+  animated_theme_switcher: ^1.0.5
+  shared_preferences: ^2.0.4
+  toast: ^0.1.5
+  progress_dialog: ^1.2.0
+  http: ^0.13.0
+
 
 
 

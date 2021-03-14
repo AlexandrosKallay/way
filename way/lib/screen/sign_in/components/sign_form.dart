@@ -1,12 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
 import 'package:way/components/custom_surffix_icon.dart';
 import 'package:way/components/default_button.dart';
 import 'package:way/components/form_error.dart';
 import 'package:way/constants.dart';
 import 'package:way/screen/forgot_password/forgot_password_screen.dart';
 import 'package:way/screen/login_success/login_success_screen.dart';
+import 'package:http/http.dart' as http;
 
 
 
@@ -22,8 +26,11 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  String urlLogin = "http://slumberjer.com/myhelper/php/login_user.php";
   TextEditingController _emailController = TextEditingController();
+  String _email = "";
   TextEditingController _passwordController = TextEditingController();
+  String _password = "";
 
   void _loginUser(String email, String password, BuildContext context) async{
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
@@ -48,7 +55,8 @@ class _SignFormState extends State<SignForm> {
   final List<String> errors=[];
   String email;
   String password;
-  bool remember = false;
+  bool _isChecked = false;
+
 
   void addError({String error}){
     if (!errors.contains(error))
@@ -77,12 +85,10 @@ class _SignFormState extends State<SignForm> {
             Row(
               children: [
                 Checkbox(
-                  value: remember,
+                  value: _isChecked,
                   activeColor: kPrimaryColor,
-                  onChanged: (value){
-                    setState(() {
-                      remember = value;
-                    });
+                  onChanged: (bool value) {
+                    _onChange(value);
                   },
                 ),
                 Text("Remember me"),
@@ -91,7 +97,8 @@ class _SignFormState extends State<SignForm> {
                   onTap: () => Navigator.popAndPushNamed(
                       context, ForgotPasswordScreen.routeName),
                   child: Text("Forgot password",
-                    style: TextStyle(decoration: TextDecoration.underline),),
+                    style: TextStyle(decoration: TextDecoration.underline),
+                  ),
                 )
               ],
             ),
@@ -103,6 +110,7 @@ class _SignFormState extends State<SignForm> {
                 if (_formKey.currentState.validate()){
                   _formKey.currentState.save();
                   _loginUser(_emailController.text, _passwordController.text, context);
+
                 }
               },
             ),
@@ -176,6 +184,81 @@ class _SignFormState extends State<SignForm> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    loadpref();
+    print('Init: $_email');
+    super.initState();
+  }
+
+  void loadpref() async {
+    print('Inside loadpref()');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _email = (prefs.getString('email'));
+    _password = (prefs.getString('pass'));
+    print(_email);
+    print(_password);
+    if (_email.length > 1) {
+      _emailController.text = _email;
+      _passwordController.text = _password;
+      setState(() {
+        _isChecked = true;
+      });
+    } else {
+      print('No pref');
+      setState(() {
+        _isChecked = false;
+      });
+    }
+  }
+
+
+  void _onChange(bool value) {
+    setState(() {
+      _isChecked = value;
+      savepref(value);
+    });
+  }
+
+  void savepref(bool value) async {
+    print('Inside savepref');
+    _email =_emailController.text;
+    _password = _passwordController.text;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (value) {
+      //true save pref
+      if (_isEmailValid(_email) && (_password.length > 5)) {
+        await prefs.setString('email', _email);
+        await prefs.setString('pass', _password);
+        print('Save pref $_email');
+        print('Save pref $_password');
+        Toast.show("Preferences have been saved", context,
+            duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+      } else {
+        print('No email');
+        setState(() {
+          _isChecked = false;
+        });
+        Toast.show("Check your credentials", context,
+            duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+      }
+    } else {
+      await prefs.setString('email', '');
+      await prefs.setString('pass', '');
+      setState(() {
+        _emailController.text = '';
+        _passwordController.text = '';
+        _isChecked = false;
+      });
+      print('Remove pref');
+      Toast.show("Preferences have been removed", context,
+          duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+    }
+  }
+  bool _isEmailValid(String email) {
+    return RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
   }
 
 

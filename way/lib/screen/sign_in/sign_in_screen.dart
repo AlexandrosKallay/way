@@ -7,7 +7,7 @@ class SignInScreen extends StatelessWidget {
   static String routeName = '/sign_in';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new Scaffold(
       appBar: AppBar(
         title: Text("Sign In"
         ),
