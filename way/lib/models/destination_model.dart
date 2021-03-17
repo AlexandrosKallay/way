@@ -5,6 +5,7 @@ class Destination {
   String city;
   String country;
   String description;
+  String preview;
   List<Activity> activities;
 
   Destination({
@@ -13,6 +14,7 @@ class Destination {
     this.country,
     this.description,
     this.activities,
+    this.preview,
   });
 }
 
@@ -49,6 +51,11 @@ List<Destination> destinations = [
     city: 'Bali',
     country: 'Indonesia',
     description: 'Visit Bali for an amazing and unforgettable adventure.',
+    preview:'Bali is a province of Indonesia and the westernmost of the Lesser Sunda Islands. \n'
+        'East of Java and west of Lombok, the province includes the island of Bali and a few \nsmaller neighbouring islands,'
+        'notably Nusa Penida, Nusa Lembongan, and Nusa Ceningan. The provincial capital, Denpasar, \n'
+        'is the most populous city in the Lesser Sunda Islands and the second-largest, after Makassar, in Eastern Indonesia. \n'
+        'Bali is Indonesia''s main tourist destination, with a significant rise in tourism since the 1980s. Tourism-related business makes up 80% of its economy.',
     activities: activities,
   ),
   Destination(
@@ -56,6 +63,7 @@ List<Destination> destinations = [
     city: 'Santorini',
     country: 'Greece',
     description: 'Visit Santorini for an amazing and unforgettable adventure.',
+    preview:'test preview2',
     activities: activities,
   ),
   Destination(
@@ -63,6 +71,7 @@ List<Destination> destinations = [
     city: 'Gran Canaria',
     country: 'Spain',
     description: 'Visit New Gran Canaria for an amazing and unforgettable adventure.',
+    preview:'test preview3',
     activities: activities,
   ),
   Destination(
@@ -70,6 +79,7 @@ List<Destination> destinations = [
     city: 'Majorca',
     country: 'Spain',
     description: 'Visit Majorca for an amazing and unforgettable adventure.',
+    preview:'test preview4',
     activities: activities,
   ),
   Destination(
@@ -77,6 +87,7 @@ List<Destination> destinations = [
     city: 'Bangkok',
     country: 'Thailand',
     description: 'Visit Bangkok for an amazing and unforgettable adventure.',
+    preview:'test preview5',
     activities: activities,
   ),
 ];
