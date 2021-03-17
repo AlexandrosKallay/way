@@ -31,7 +31,6 @@ class DestinationCarousel extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: ()=> print('See All'),
-
                   child: Text('See All',
                     style: TextStyle(
                       color: kPrimaryColor,
