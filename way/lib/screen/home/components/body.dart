@@ -5,7 +5,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:way/size_config.dart';
 import 'package:way/widgets/destination_carousel.dart';
 import 'package:way/widgets/hotel_carousel.dart';
+import 'package:way/widgets/image_carousel.dart';
 import '../../../constants.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -49,91 +51,31 @@ class _BodyState extends State<Body> {
     );
   }
 
-  bool _pinned = true;
-  bool _snap = false;
-  bool _floating = false;
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: CustomScrollView(
         slivers: <Widget>[
-          // SliverAppBar(
-          //   forceElevated: true,
-          //     automaticallyImplyLeading: false,
-          //   pinned: false,
-          //   floating: true,
-          //   snap: false,
-          //   elevation: 0.0,
-          //   expandedHeight: getProportionateScreenWidth(100),
-          //   flexibleSpace: FlexibleSpaceBar(
-          //     background:Stack(
-          //         clipBehavior: Clip.none,
-          //         alignment: Alignment.center,
-          //         children: [
-          //           Image.asset("assets/images/way.jpg",
-          //             height: getProportionateScreenWidth(100),
-          //             width: getProportionateScreenWidth(300),
-          //             fit: BoxFit.cover,
-          //           ),
-          //           Column(
-          //             crossAxisAlignment: CrossAxisAlignment.center,
-          //             children: [
-          //               Text("WAY",
-          //                 style: TextStyle(
-          //                     fontSize: getProportionateScreenWidth(30),
-          //                     color: Colors.white,
-          //                     fontFamily: "muli",
-          //                     fontWeight: FontWeight.w600,
-          //                     letterSpacing: 2.0,
-          //                     height: 1.9
-          //                 ),
-          //               ),
-          //               Text("The best way to get away.",
-          //                 style: TextStyle(
-          //                     fontSize:17,
-          //                     color: Colors.white70),
-          //               ),
-          //             ],
-          //           ),
-          //       ]
-          //     )
-          //   )
-          // ),
-          SliverPersistentHeader(
+          /*SliverPersistentHeader(
             floating: true,
             pinned: true,
-            delegate: CustomSliverAppBarDelegate(expandedHeight: 200),
-                // child: PreferredSize(
-                //   preferredSize: Size.fromHeight(40.0),
-                //   child: Container(
-                //     color: Theme.of(context).primaryColor,
-                //     child: Padding(
-                //       padding: EdgeInsets.symmetric(vertical: getProportionateScreenWidth(2), horizontal: getProportionateScreenWidth(8)),
-                //       child: Row(
-                //         mainAxisAlignment: MainAxisAlignment.center,
-                //         children: <Widget>[
+            delegate: CustomSliverAppBarDelegate(expandedHeight: getProportionateScreenWidth(75)),
+          ),*/
 
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // )
-          ),
           SliverFixedExtentList(
-            itemExtent: getProportionateScreenWidth(165),
+
+            itemExtent: getProportionateScreenWidth(135),
             delegate: SliverChildListDelegate(
               [
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: getProportionateScreenWidth(15)),
-                  child: DestinationCarousel(),
-                ),
+                CarouselDemo(),
+                DestinationCarousel(),
                 HotelCarousel(),
-                Container(color: Colors.green),
+                //DestinationCarousel(),
+                //CarouselDemo(),
+                /*Container(color: Colors.green),
                 Container(color: Colors.orange),
                 Container(color: Colors.yellow),
-                Container(color: Colors.pink),
+                Container(color: Colors.pink),*/
               ],
             ),
           ),
@@ -153,8 +95,13 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    final size = 50;
+
+    //CarouselDemo();
+    final size = getProportionateScreenWidth(80);
     final top = expandedHeight - shrinkOffset - size / 2;
+
+
+
 
     return Stack(
       fit: StackFit.expand,
@@ -162,14 +109,7 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
       children: [
         buildBackground(shrinkOffset),
 
-        buildAppBar(shrinkOffset),
-        SizedBox(height: getProportionateScreenWidth(5)),
-        Positioned(
-          top: top,
-          left: 20,
-          right: 20,
-          child: buildFloating(shrinkOffset),
-        ),
+        //buildAppBar(shrinkOffset),
       ],
     );
   }
@@ -182,44 +122,48 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
     opacity: appear(shrinkOffset),
     child: AppBar(
       automaticallyImplyLeading: false,
-      title: Text("tted"),
+      title: Text("test"),
       centerTitle: true,
     ),
   );
 
   Widget buildBackground(double shrinkOffset) => Opacity(
     opacity: disappear(shrinkOffset),
-    child: Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.center,
-              children: [
-                Image.asset("assets/images/way.jpg",
-                  height: getProportionateScreenWidth(100),
-                  width: getProportionateScreenWidth(300),
-                  fit: BoxFit.cover,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("WAY",
-                      style: TextStyle(
-                          fontSize: getProportionateScreenWidth(30),
-                          color: Colors.white,
-                          fontFamily: "muli",
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 2.0,
-                          height: 1.9
+    child: SingleChildScrollView(
+      child: Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.center,
+                children: [
+                  CarouselDemo(),
+                  /*Image.asset("assets/images/way.jpg",
+                    height: getProportionateScreenWidth(70),
+                    width: getProportionateScreenWidth(300),
+                    fit: BoxFit.cover,
+                  ),*/
+                  Column(
+
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      /*Text("WAY",
+                        style: TextStyle(
+                            fontSize: getProportionateScreenWidth(30),
+                            color: Colors.white,
+                            fontFamily: "muli",
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 2.0,
+                            height: 0.5
+                        ),
                       ),
-                    ),
-                    Text("The best way to get away.",
-                      style: TextStyle(
-                          fontSize:17,
-                          color: Colors.white70),
-                    ),
-                  ],
-                ),
-            ]
-          )
+                      Text("The best way to get away.",
+                        style: TextStyle(
+                            fontSize:17,
+                            color: Colors.white70),
+                      ),*/
+                    ],
+                  ),
+              ]
+            ),
+    )
   );
 
   Widget buildFloating(double shrinkOffset) => Opacity(
@@ -250,17 +194,7 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
           ),
         ),
       );
-      // TextButton(
-      //   child: Row(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       Icon(icon),
-      //       const SizedBox(width: 12),
-      //       Text(text, style: TextStyle(fontSize: 20)),
-      //     ],
-      //   ),
-      //   onPressed: () {},
-      // );
+
 
   @override
   double get maxExtent => expandedHeight;
@@ -271,87 +205,7 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;
 }
-    // return SafeArea(
-    //   child: ListView(
-    //
-    //     // padding: EdgeInsets.symmetric(
-    //     //     vertical: getProportionateScreenWidth(0)
-    //     // ),
-    //     children: <Widget>[
-    //       //HomeHeader(),
-    //         //padding: EdgeInsets.only(left: getProportionateScreenWidth(10.0), right: getProportionateScreenWidth(30.0)),
-    //         // child: Text("Where would you like to go next?",
-    //         //   style: headingStyle,
-    //         // ),
-    //       Stack(
-    //         overflow: Overflow.visible,
-    //         alignment: Alignment.center,
-    //         children: [
-    //           Image.asset("assets/images/way.jpg",
-    //             height: getProportionateScreenWidth(100),
-    //             width: getProportionateScreenWidth(300),
-    //           fit: BoxFit.cover,
-    //           ),
-    //           Column(
-    //             crossAxisAlignment: CrossAxisAlignment.center,
-    //             children: [
-    //               Text("WAY",
-    //                 style: TextStyle(
-    //                     fontSize: getProportionateScreenWidth(30),
-    //                     color: Colors.white,
-    //                     fontFamily: "muli",
-    //                     fontWeight: FontWeight.w600,
-    //                     letterSpacing: 2.0,
-    //                     height: 0.7
-    //                 ),
-    //               ),
-    //               Text("The best way to get away.",
-    //                   style: TextStyle(
-    //                       fontSize:17,
-    //                       color: Colors.white70),
-    //                 ),
-    //             ],
-    //           ),
-    //           Positioned(
-    //             bottom: getProportionateScreenWidth(-10),
-    //             child: Container(
-    //               width: getProportionateScreenWidth(135),
-    //               height: getProportionateScreenWidth(20),
-    //               decoration: mySearchBarBoxDecoration (context),
-    //                 child: TextField(
-    //                   onChanged: (value) {},
-    //                   decoration: InputDecoration(
-    //                     hintText: "Search your destination…",
-    //                     hintStyle: TextStyle(
-    //                       fontSize: getProportionateScreenWidth(8),
-    //                       //color: Color(0xFF000000),
-    //                     ),
-    //                     suffixIcon: Icon(Icons.search),
-    //                     contentPadding: EdgeInsets.symmetric(
-    //                       horizontal: getProportionateScreenWidth(10),
-    //                       vertical: getProportionateScreenWidth(5),
-    //                     ),
-    //                   ),
-    //                 ),
-    //             )
-    //           )
-    //         ]
-    //       ),
-    //       SizedBox(height: getProportionateScreenWidth(5)),
-    //       // Row(
-    //       //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //       //   children:
-    //       //     _icons.asMap().entries.map(
-    //       //           (MapEntry map)=>_buildIcon(map.key),
-    //       //     ).toList()
-    //       // ),
-    //       SizedBox(height: getProportionateScreenWidth(10)),
-    //       DestinationCarousel(),
-    //       SizedBox(height: getProportionateScreenWidth(2)),
-    //       HotelCarousel(),
-    //     ],
-    //   ),
-    // );
+
 
 
 

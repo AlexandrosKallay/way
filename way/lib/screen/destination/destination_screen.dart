@@ -43,7 +43,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
           ),
           Container(
             //Add this to give height
-            height: getProportionateScreenWidth(157),
+            height: getProportionateScreenWidth(122),
             child: TabBarView(children: [
               Container(
                 child: Card(
@@ -213,7 +213,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                 child: Hero(
                   tag: widget.destination.imageUrl,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(2),
                     child: Image(
                       image: AssetImage(widget.destination.imageUrl),
                       fit: BoxFit.cover,

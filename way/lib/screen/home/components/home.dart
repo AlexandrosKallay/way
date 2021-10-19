@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:way/screen/geolocation/location.dart';
 import 'package:way/screen/home/components/body.dart';
 import 'package:way/screen/profile/profile_screen.dart';
-
-import '../../../constants.dart';
-import '../../../size_config.dart';
-import 'discount_banner.dart';
-import 'home_header.dart';
 
 
 
@@ -29,11 +25,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.blue,
         );
       case 2:
-        return new Container(
-          width: 50,
-          height: 90,
-          color: Colors.green,
-        );
+        return new locationScreen();
       case 3:
         return new ProfileBody();
 
@@ -70,19 +62,19 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            title: Text(''),
+            label: '',
             icon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
-            title: Text(''),
+            label: '',
             icon: Icon(Icons.favorite),
           ),
           BottomNavigationBarItem(
-            title: Text(''),
+            label: '',
             icon: Icon(Icons.location_on),
           ),
           BottomNavigationBarItem(
-            title: Text(''),
+            label:'',
             icon: CircleAvatar(
               radius: 13.0,
               backgroundImage: AssetImage('assets/images/profile.jpg'),

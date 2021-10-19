@@ -154,8 +154,7 @@ class DestinationCarousel extends StatelessWidget {
                     ),
                   ),
                 );
-              }
-              ),
+              }),
         )
       ],
     );
