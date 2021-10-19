@@ -12,6 +12,14 @@ class CarouselDemo extends StatelessWidget {
 
   CarouselController buttonCarouselController = CarouselController();
 
+  final List<String> imageList = [
+    'assets/images/hotel0.jpg',
+    'assets/images/hotel1.jpg',
+    'assets/images/hotel2.jpg',
+    'assets/images/temple.jpg',
+    'assets/images/swing.jpg',
+  ];
+
 
 
 
@@ -23,22 +31,21 @@ class CarouselDemo extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(1),vertical: getProportionateScreenWidth(1)),
         child:
               CarouselSlider(
-                items: [1,2,3,4,5].map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(1)),
-                          decoration: BoxDecoration(
-                              color: Colors.amber
-                          ),
-                          child: Text('text $i', style: TextStyle(fontSize: 16.0),)
-                      );
-                    },
-                  );
-                }).toList(),
+                items: imageList.map((e) => ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: <Widget>[
+                      Image.asset(e,
+                      width: getProportionateScreenWidth(500),
+                      height: getProportionateScreenWidth(100),
+                      fit: BoxFit.cover,
+                      )
+                    ],
+                  ),
+                )).toList(),
                 options: CarouselOptions(
-                  height:  getProportionateScreenWidth(100),
+                  height:  getProportionateScreenWidth(120),
                   aspectRatio: 16/9,
                   viewportFraction: 0.8,
                   initialPage: 0,
