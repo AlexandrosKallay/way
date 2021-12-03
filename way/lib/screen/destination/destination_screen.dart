@@ -43,7 +43,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
           ),
           Container(
             //Add this to give height
-            height: getProportionateScreenWidth(157),
+            height: getProportionateScreenWidth(120),
             child: TabBarView(children: [
               Container(
                 child: Card(
@@ -78,7 +78,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                         return Stack(
                           children: <Widget>[
                             Container(
-                              margin: EdgeInsets.fromLTRB(getProportionateScreenWidth(20), getProportionateScreenWidth(2), getProportionateScreenWidth(10), getProportionateScreenWidth(2)),
+                              margin: EdgeInsets.fromLTRB(getProportionateScreenWidth(20), getProportionateScreenWidth(10), getProportionateScreenWidth(10), getProportionateScreenWidth(10)),
                               height: getProportionateScreenWidth(95),
                               width: double.infinity,
                               decoration: myHotelBoxDecoration(context),
@@ -213,7 +213,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                 child: Hero(
                   tag: widget.destination.imageUrl,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(2),
                     child: Image(
                       image: AssetImage(widget.destination.imageUrl),
                       fit: BoxFit.cover,
